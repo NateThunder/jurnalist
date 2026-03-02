@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# JURNALIST Landing Page
+
+Responsive single-page artist landing site built with Next.js App Router, TypeScript, and Tailwind CSS.
 
 ## Getting Started
 
-First, run the development server:
+Install dependencies and run locally:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Hero Image
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The hero uses:
 
-## Learn More
+`public/hero.png`
 
-To learn more about Next.js, take a look at the following resources:
+Replace this file with your production artwork while keeping the same filename to avoid code changes.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+If the image was provided in a mounted data folder, copy it with:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+cp /mnt/data/9b4b9c69-72c5-498b-a0a2-d547291c8b8f.png public/hero.png
+```
 
-## Deploy on Vercel
+## Structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `app/page.tsx`: page composition and placeholder content sections
+- `components/Navbar.tsx`: sticky top nav with desktop and mobile menu
+- `components/Hero.tsx`: full-screen hero with background image, overlay, CTAs, and platform row
+- `components/Section.tsx`: reusable section block for link targets
+- `app/stems/page.tsx`: public stems marketplace route with preview mixer and checkout buttons
+- `app/admin/page.tsx`: protected admin dashboard for stem pack management
+- `app/globals.css`: global theme values, smooth scroll, and animation utilities
+
+## Stems Marketplace
+
+- Public route: `http://localhost:3000/stems`
+- Admin route: `http://localhost:3000/admin/login`
+- Supports:
+  - full pack sales and individual stem sales
+  - short preview playback with per-stem mute/solo/volume
+  - Stripe and PayPal checkout URLs per pack or per stem
+
+### Admin Environment Variables
+
+Set these in `.env.local`:
+
+```bash
+STEMS_ADMIN_USERNAME=admin
+STEMS_ADMIN_PASSWORD=replace_this
+STEMS_ADMIN_SESSION_SECRET=replace_this_too
+```
+
+If unset, username defaults to `admin` and password defaults to `changeme` (development fallback only).
+
+### Data Storage
+
+Stem catalog data is stored in:
+
+`./.data/stem-packs.json`
+
+This file is generated automatically and ignored by git.
+
+## Notes
+
+- `next/image` is used for the full-page hero background (`fill`, `priority`, `sizes="100vw"`) for responsive optimization.
+- The vignette/contrast layer is implemented with stacked gradient overlays to keep center copy readable on top of the image.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
