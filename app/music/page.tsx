@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 
 const spotifyArtistUrl = "https://open.spotify.com/artist/29HYRAPfFehxCFEz951HtG?si=mFwcOgd6T-OxL9t7Y4GjmQ";
-const spotifyEmbedUrl = "https://open.spotify.com/embed/artist/29HYRAPfFehxCFEz951HtG?utm_source=generator";
+const spotifyEmbedUrl = "https://open.spotify.com/embed/artist/29HYRAPfFehxCFEz951HtG";
 
 export const metadata: Metadata = {
   title: "JURNALIST | Music",
