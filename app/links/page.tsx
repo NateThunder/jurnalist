@@ -132,37 +132,40 @@ async function getLinktreeData(): Promise<{ socialLinks: SocialLink[]; linkItems
       .filter((social): social is SocialLink => Boolean(social));
 
     let headingCount = 0;
-    const linkItems: LinkItem[] = (pageProps.links ?? [])
+    const linkItems = (pageProps.links ?? [])
       .sort((a, b) => (a.position ?? 0) - (b.position ?? 0))
-      .map((link, index) => {
+      .flatMap((link, index): LinkItem[] => {
         if (link.type === "HEADER") {
           headingCount += 1;
-          return {
-            type: "heading",
-            title: link.title ?? "Section",
-            icon: headingCount === 1 ? "spark" : "music",
-          } satisfies SectionHeading;
+          return [
+            {
+              type: "heading",
+              title: link.title ?? "Section",
+              icon: headingCount === 1 ? "spark" : "music",
+            },
+          ];
         }
 
         if (!link.url || !link.title) {
-          return null;
+          return [];
         }
 
         const subtitleFromMeta = (link.metaData?.title ?? "").trim();
         const subtitle = subtitleFromMeta && subtitleFromMeta !== link.title ? subtitleFromMeta : undefined;
         const subtitleIcon = linkTypeToMetaIcon[link.type ?? ""];
 
-        return {
-          type: "link",
-          title: link.title,
-          href: link.url,
-          thumbnail: makeThumb(link.thumbnail),
-          subtitle,
-          subtitleIcon,
-          featured: index === 0,
-        } satisfies LinkCard;
-      })
-      .filter((item): item is LinkItem => Boolean(item));
+        return [
+          {
+            type: "link",
+            title: link.title,
+            href: link.url,
+            thumbnail: makeThumb(link.thumbnail),
+            subtitle,
+            subtitleIcon,
+            featured: index === 0,
+          },
+        ];
+      });
 
     return { socialLinks, linkItems };
   } catch {
@@ -340,3 +343,4 @@ export default async function LinksPage() {
     </>
   );
 }
+
