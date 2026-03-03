@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Navbar from "@/components/Navbar";
 
 const epkFileName = "JURNALIST EPK 24 V4.pdf";
@@ -15,9 +16,13 @@ export default function EpkPage() {
       <Navbar />
       <main className="relative min-h-screen overflow-hidden px-6 pb-20 pt-32 sm:px-8">
         <div className="pointer-events-none absolute inset-0 -z-10">
-          <div
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: 'url("/media/Jurnalist 14 by Craig R McIntosh.jpg")' }}
+          <Image
+            src="/media/Jurnalist 14 by Craig R McIntosh.jpg"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center"
           />
         </div>
         <div className="mx-auto w-full max-w-3xl">

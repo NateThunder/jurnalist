@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import Image from "next/image";
 
 type SocialIconName = "bandcamp" | "patreon" | "youtube" | "instagram" | "facebook";
 type MetaIconName = "spotify" | "apple" | "bandcamp" | "youtube" | "discord";
@@ -287,7 +288,17 @@ export default async function LinksPage() {
       <Navbar />
       <main className="links-page">
         <div className="links-background" aria-hidden="true">
-          <span className="links-bg-main" />
+          <div className="links-bg-main">
+            <Image
+              src="/media/jurnalist-16.jpg"
+              alt=""
+              fill
+              priority
+              sizes="100vw"
+              className="links-bg-main-img"
+              unoptimized
+            />
+          </div>
         </div>
 
         <div className="links-shell">
@@ -343,4 +354,3 @@ export default async function LinksPage() {
     </>
   );
 }
-
