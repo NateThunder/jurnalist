@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 function PlayIcon() {
   return (
     <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5 fill-current">
@@ -24,6 +26,7 @@ function AppleIcon() {
 
 export default function Hero() {
   const spotifyArtistUrl = "https://open.spotify.com/artist/29HYRAPfFehxCFEz951HtG?si=mFwcOgd6T-OxL9t7Y4GjmQ";
+  const appleMusicArtistUrl = "https://music.apple.com/gb/artist/jurnalist/476791990";
 
   return (
     <section id="top" className="relative isolate min-h-screen overflow-hidden">
@@ -66,12 +69,12 @@ export default function Hero() {
               LISTEN
             </a>
 
-            <a
-              href="#contact"
+            <Link
+              href="/#contact"
               className="inline-flex h-16 w-full items-center justify-center rounded-2xl border border-white/10 bg-[#1a1d25]/62 px-8 text-[1.05rem] font-extrabold tracking-[0.02em] text-[#f2f2f2] hover:bg-[#262a35]/70 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#f6a21a] sm:w-auto sm:min-w-[18rem]"
             >
               BOOK JURNALIST
-            </a>
+            </Link>
           </div>
 
           <div className="mt-10 space-y-2 text-[clamp(1rem,2.4vw,1.45rem)] font-medium leading-[1.3] text-[#d6d6d8]">
@@ -92,25 +95,14 @@ export default function Hero() {
               <span className="text-[1.45rem] leading-none">Spotify</span>
             </a>
             <a
-              href={spotifyArtistUrl}
+              href={appleMusicArtistUrl}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Open Spotify artist page"
+              aria-label="Open Apple Music artist page"
               className="inline-flex items-center gap-2 text-[1.45rem] font-semibold hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#f6a21a]"
             >
               <AppleIcon />
               <span className="text-[1.45rem] uppercase leading-none">Music</span>
-            </a>
-          </div>
-
-          <div className="mt-6 text-sm font-semibold uppercase tracking-[0.09em] text-[#f2f2f2]/92">
-            <a
-              href={spotifyArtistUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#f6a21a]"
-            >
-              Spotify
             </a>
           </div>
         </div>
@@ -118,4 +110,5 @@ export default function Hero() {
     </section>
   );
 }
+
 

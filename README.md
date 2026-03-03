@@ -33,38 +33,13 @@ cp /mnt/data/9b4b9c69-72c5-498b-a0a2-d547291c8b8f.png public/hero.png
 - `components/Navbar.tsx`: sticky top nav with desktop and mobile menu
 - `components/Hero.tsx`: full-screen hero with background image, overlay, CTAs, and platform row
 - `components/Section.tsx`: reusable section block for link targets
-- `app/stems/page.tsx`: public stems marketplace route with preview mixer and checkout buttons
-- `app/admin/page.tsx`: protected admin dashboard for stem pack management
+- `app/epk/page.tsx`: EPK download route (PDF)
 - `app/globals.css`: global theme values, smooth scroll, and animation utilities
 
-## Stems Marketplace
+## EPK
 
-- Public route: `http://localhost:3000/stems`
-- Admin route: `http://localhost:3000/admin/login`
-- Supports:
-  - full pack sales and individual stem sales
-  - short preview playback with per-stem mute/solo/volume
-  - Stripe and PayPal checkout URLs per pack or per stem
-
-### Admin Environment Variables
-
-Set these in `.env.local`:
-
-```bash
-STEMS_ADMIN_USERNAME=admin
-STEMS_ADMIN_PASSWORD=replace_this
-STEMS_ADMIN_SESSION_SECRET=replace_this_too
-```
-
-If unset, username defaults to `admin` and password defaults to `changeme` (development fallback only).
-
-### Data Storage
-
-Stem catalog data is stored in:
-
-`./.data/stem-packs.json`
-
-This file is generated automatically and ignored by git.
+- Public route: `http://localhost:3000/epk`
+- The EPK PDF is served from `public/JURNALIST EPK 24 V4.pdf`.
 
 ## Notes
 
